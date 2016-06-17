@@ -1,0 +1,35 @@
+{
+  "name": "react-hot-boilerplate",
+  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "main": "",
+  "authors": [
+    "Sagar Patke <sagarpatke@gmail.com> (http://github.com/sagarpatke)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "hot",
+    "reload",
+    "hmr",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "homepage": "https://github.com/sagarpatke/mern-seneca-boilerplate",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "common-ui/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flexboxgrid": "^6.3.0",
+    "roboto-and-material-icons-fonts": "^1.0.1",
+    "jquery": "^3.0.0"
+  }
+}
