@@ -1,0 +1,6 @@
+var config = require('../rest-server/config');
+var app = require('../rest-server/app');
+
+app.listen(config.port, function() {
+  console.log('Express server listening on port: ', config.port);
+});

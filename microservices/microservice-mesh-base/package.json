@@ -1,0 +1,24 @@
+{
+  "name": "mesh-base",
+  "version": "0.1.0",
+  "description": "Microservice Mesh Base",
+  "main": "mesh-base.js",
+  "scripts": {
+    "start": "node mesh-base.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "seneca",
+    "microservice",
+    "mesh",
+    "base",
+    "node"
+  ],
+  "author": "Sagar Patke <sagarpatke@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "seneca": "^2.1.0",
+    "seneca-balance-client": "^0.5.0",
+    "seneca-mesh": "^0.7.0"
+  }
+}

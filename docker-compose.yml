@@ -1,0 +1,44 @@
+version: '2'
+services:
+  microservice-mesh-base:
+    container_name: microservice-mesh-base
+    build: microservices/microservice-mesh-base
+    image: boilerplate/mesh-base
+    network_mode: host
+    restart: always
+  microservice-accounts:
+    container_name: microservice-accounts
+    build: microservices/microservice-accounts
+    image: boilerplate/accounts
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-mesh-base
+    environment:
+      MONGO_URL: 'mongodb://localhost:27017/boilerplate-production'
+  microservice-jwt:
+    container_name: microservice-jwt
+    build: microservices/microservice-jwt
+    image: boilerplate/jwt
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-mesh-base
+  http-server:
+    container_name: http-server0
+    build: microservices/http-server
+    image: boilerplate/http-server
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-mesh-base
+  db:
+    container_name: mongo
+    image: mvertes/alpine-mongo
+    restart: always
+    depends_on:
+      - microservice-mesh-base
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
