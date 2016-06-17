@@ -23,7 +23,7 @@ $ npm run build
 ```
 1. Create Docker Machine boilerplate
 ```sh
-$ docker-machine create -d virtualbox
+$ docker-machine create -d virtualbox default
 $ eval $(docker-machine env)
 $ docker images
 ```
