@@ -12,4 +12,5 @@ COPY common-ui/styles /usr/src/service/common-ui/styles/
 COPY common-ui/static /usr/src/service/common-ui/static/
 COPY rest-server /usr/src/service/rest-server/
 
+# Use --production flag for production. To enable CORS during development, ensure that the --production flag is removed, and make sure to set the NODE_ENV environment variable to 'dev' in the docker-compose.yml file.
 CMD ["npm","start","--production"]

@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
-import baseUrl from '../../baseUrl';
+import restUrl from '../../restUrl';
 
 export default class LoginForm extends React.Component {
   constructor() {
@@ -48,7 +48,7 @@ export default class LoginForm extends React.Component {
 
     if(!loginForm.username.error && !loginForm.password.error) {
       var request = $.ajax({
-        url: baseUrl + '/api/v1/authenticate',
+        url: restUrl + '/api/v1/authenticate',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json'
