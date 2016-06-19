@@ -4,10 +4,9 @@ const async = require('async');
 const decorator = {};
 const env = process.env.NODE_ENV || 'dev';
 
-const baseMicroservice = seneca();
-const accountMicroservice = seneca();
-const jwtMicroservice = seneca();
-const consumerMicroservice = seneca();
+var baseMicroservice = seneca();
+var accountMicroservice = seneca();
+var jwtMicroservice = seneca();
 
 decorator.startAllMicroservices = function(cb) {
   async.parallel({
@@ -34,12 +33,15 @@ decorator.stopAllMicroservices = function(cb) {
   async.parallel({
     stopJwtMicroservice: function(done) {
       jwtMicroservice.close(done);
+      jwtMicroservice = seneca();
     },
     stopAccountMicroservice: function(done) {
       accountMicroservice.close(done);
+      accountMicroservice = seneca();
     },
     stopBaseMicroservice: function(done) {
       baseMicroservice.close(done);
+      baseMicroservice = seneca();
     }
   }, cb);
 };

@@ -14,7 +14,8 @@ export default class LoginForm extends React.Component {
         username: {value: '', pristine: true, error: 'Username is required'},
         password: {value: '', pristine: true, error: 'Password is required'},
         attemptedLogin: false
-      }
+      },
+      openFailDialog: false
     };
   }
 
@@ -53,11 +54,11 @@ export default class LoginForm extends React.Component {
         data: JSON.stringify(data),
         contentType: 'application/json'
       });
-      request.done(function(data, status) {
-        localStorage.token = status.token;
+      request.done(function(data) {
+        localStorage.token = data.token;
         this.context.router.push('/');
       }.bind(this));
-      request.fail(function(data) {
+      request.fail(function() {
         this.setState({openFailDialog: true});
       }.bind(this));
     }
@@ -80,12 +81,31 @@ export default class LoginForm extends React.Component {
       <div>
         <h1>Login</h1>
         <form onSubmit={this.handleLogin.bind(this)}>
-          <TextField floatingLabelText="Username" fullWidth={true} value={this.state.loginForm.username.value} onChange={this.handleUsernameChange.bind(this)} errorText={!this.state.loginForm.attemptedLogin && this.state.loginForm.username.pristine ? '' : this.state.loginForm.username.error} errorStyle={{textAlign: 'left'}} />
-          <TextField type="password" floatingLabelText="Password" fullWidth={true} value={this.state.loginForm.password.value} onChange={this.handlePasswordChange.bind(this)} errorText={!this.state.loginForm.attemptedLogin && this.state.loginForm.password.pristine ? '' : this.state.loginForm.password.error} errorStyle={{textAlign: 'left'}} />
-          <RaisedButton type="submit" label="Login" primary={true} style={{width: '100%'}} />
+          <TextField
+            floatingLabelText="Username"
+            fullWidth={true}
+            value={this.state.loginForm.username.value}
+            onChange={this.handleUsernameChange.bind(this)}
+            errorText={!this.state.loginForm.attemptedLogin && this.state.loginForm.username.pristine ? '' : this.state.loginForm.username.error}
+            errorStyle={{textAlign: 'left'}} />
+          <TextField type="password"
+            floatingLabelText="Password"
+            fullWidth={true}
+            value={this.state.loginForm.password.value}
+            onChange={this.handlePasswordChange.bind(this)}
+            errorText={!this.state.loginForm.attemptedLogin && this.state.loginForm.password.pristine ? '' : this.state.loginForm.password.error}
+            errorStyle={{textAlign: 'left'}} />
+          <RaisedButton
+            type="submit"
+            label="Login"
+            primary={true}
+            style={{width: '100%', marginTop: '25px'}} />
         </form>
-        <Dialog open={this.state.openFailDialog} actions={actions} onRequestClose={this.closeFailDialog.bind(this)}>
-          The Username Password entered do not match any of our records. Please try again.
+        <Dialog
+          open={this.state.openFailDialog}
+          actions={actions}
+          onRequestClose={this.closeFailDialog.bind(this)}>
+          The Username and Password entered do not match with any of our records. Please try again.
         </Dialog>
       </div>
     );

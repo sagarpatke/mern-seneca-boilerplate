@@ -10,6 +10,7 @@ injectTapEventPlugin();
 
 import LoginView from './views/LoginView';
 import DashboardView from './views/DashboardView';
+import ChangePasswordView from './views/MyAccount/ChangePasswordView';
 
 const verifyLogin = function(nextState, replace) {
   if(!localStorage.token) {
@@ -35,8 +36,9 @@ const clearLogin = function(nextState, replace) {
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <Router history={hashHistory}>
-      <Route path="/login" component={LoginView} onEnter={handleLoginEnter}/>
+      <Route path="/login" component={LoginView} onEnter={handleLoginEnter} />
       <Route path="/" component={DashboardView} onEnter={verifyLogin} />
+      <Route path="my-account/change-password" component={ChangePasswordView} onEnter={verifyLogin} />
     </Router>
   </MuiThemeProvider>
 , document.getElementById('root'));
