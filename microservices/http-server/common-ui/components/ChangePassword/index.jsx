@@ -54,7 +54,8 @@ export default class ChangePassword extends React.Component {
     this.setState({changePasswordForm});
   }
 
-  handleFormSubmit() {
+  handleChangePassword(event) {
+    event.preventDefault();
     const changePasswordForm = this.state.changePasswordForm;
     for(let field in changePasswordForm) {
       if(changePasswordForm[field].pristine) { return; }
@@ -105,7 +106,7 @@ export default class ChangePassword extends React.Component {
     return (
       <div>
         <h1>Change Password</h1>
-        <form onSubmit={this.handleFormSubmit.bind(this)}>
+        <form onSubmit={this.handleChangePassword.bind(this)}>
           <TextField
             value={this.state.changePasswordForm.username.value}
             floatingLabelText="Username"
