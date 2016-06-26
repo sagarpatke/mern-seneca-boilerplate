@@ -1,12 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose')
 
 var bcrypt = require('bcrypt');
-
-var AccountSchema = new Schema({
-  username: { type: String, required: true, unique: true, index: true },
-  password: { type: String, required: true }
-});
 
 exports = module.exports = function(options) {
   const connection = mongoose.createConnection(options.mongoUrl);
@@ -33,7 +27,7 @@ exports = module.exports = function(options) {
     return bcrypt.compare(password, hash, callback);
   }
 
-  const Account = connection.model('Account', AccountSchema);
+  const Account = connection.model('Account', require('./account.schema'));
 
   this.add('role:authentication,cmd:create', function(msg, respond) {
     return Account.find({username: msg.username}, function(err, retrievedAccounts) {
