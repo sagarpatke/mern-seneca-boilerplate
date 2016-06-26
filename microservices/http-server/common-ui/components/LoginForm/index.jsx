@@ -41,7 +41,8 @@ export default class LoginForm extends React.Component {
     this.setState({loginForm: loginForm});
   }
 
-  handleLogin() {
+  handleLogin(event) {
+    event.preventDefault();
     var loginForm = this.state.loginForm;
     loginForm.attemptedLogin = true;
 
